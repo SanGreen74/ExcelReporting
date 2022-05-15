@@ -9,14 +9,28 @@
 
     <ItemGroup>
         <PackageReference Include="EPPlus" Version="6.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.5" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="NUnit" Version="3.13.2" />
         <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
         <PackageReference Include="coverlet.collector" Version="3.1.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="PkoReport\Data\valid_pko.xlsx">
+      <ProjectReference Include="..\ExcelReporting.Api\ExcelReporting.Api.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="appsettings.json">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="PkoReport\Data\pko.xlsx">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>

@@ -6,9 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 namespace ExcelReporting.API.Controllers;
 
 [ApiController]
-[Route("pko")]
+[Route("[controller]")]
 public class PkoExcelReportController : ControllerBase
 {
+    [HttpGet("getsmth")]
+    public async Task<IActionResult> Get()
+    {
+        return NotFound();
+    }
+    
     [HttpPost("parse")]
     public IActionResult ParseReport([FromBody] PkoExcelReportParseRequest request)
     {

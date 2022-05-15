@@ -17,5 +17,10 @@
       <ProjectReference Include="..\ExcelReporting.Client\ExcelReporting.Client.csproj" />
       <ProjectReference Include="..\ExcelReporting\ExcelReporting.csproj" />
     </ItemGroup>
-
+    <ItemGroup>
+        <InternalsVisibleTo Include="ExcelReporting.Tests" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Features\Pko\Parse" />
+    </ItemGroup>
 </Project>

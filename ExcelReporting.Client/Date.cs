@@ -41,6 +41,13 @@ namespace ExcelReporting.Client
 
         public DayOfWeek DayOfWeek => ToDateTime().DayOfWeek;
 
+        public static Date ParseFromOADate(string value)
+        {
+            var parsed = long.Parse(value);
+            var fromOaDate = DateTime.FromOADate(parsed);
+            return new Date(fromOaDate);
+        }
+        
         public static Date Parse(string value)
         {
             if (value is null)
@@ -50,7 +57,7 @@ namespace ExcelReporting.Client
 
             if (!TryParse(value, out var date))
             {
-                throw new FormatException($"Date format should be '{DefaultDateFormat}'");
+                throw new FormatException($"Date format should be '{DefaultDateFormat}', but was {value}");
             }
 
             return date;

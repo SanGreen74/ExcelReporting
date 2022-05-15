@@ -16,7 +16,8 @@ public class PkoExcelReport : IPkoExcelReport
 
     public IPkoExcelReport UpdateComplicationDate(Date date)
     {
-        UpdateCellValue(PkoExcelReportAddresses.ComplicationDate, date.ToString());
+        var oaDate = date.ToDateTime().ToOADate();
+        UpdateCellValue(PkoExcelReportAddresses.ComplicationDate, oaDate);
         return this;
     }
 

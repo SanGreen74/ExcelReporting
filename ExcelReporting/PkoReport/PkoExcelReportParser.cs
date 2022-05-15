@@ -21,8 +21,9 @@ public class PkoExcelReportParser
         {
             throw new ArgumentNullException(nameof(complicationDateCell), "Not found complication date");
         }
+        
 
-        return ParseCellValue(complicationDateCell, Date.Parse);
+        return ParseCellValue(complicationDateCell, Date.ParseFromOADate);
     }
 
     public int ParseLastDocumentNumber()

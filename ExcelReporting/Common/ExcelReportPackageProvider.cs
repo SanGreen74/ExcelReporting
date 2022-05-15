@@ -6,6 +6,6 @@ public static class ExcelReportPackageProvider
 {
     public static ExcelPackage Get(byte[] bytes)
     {
-        throw new NotImplementedException();
+        return new ExcelPackage(new MemoryStream(bytes));
     }
 }

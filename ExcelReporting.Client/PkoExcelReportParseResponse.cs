@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ExcelReporting.Client
 {
     public class PkoExcelReportParseResponse
     {
+        [JsonConverter(typeof(DateConverter))]
         public Date LastComplicationDate { get; set; }
         
         public int LastDocumentNumber { get; set; }
