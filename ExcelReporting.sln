@@ -2,11 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelReporting", "ExcelReporting\ExcelReporting.csproj", "{F11C503F-53D9-4076-BDC3-4DA425E73426}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelReporting.Api", "ExcelReporting.Api\ExcelReporting.Api.csproj", "{2EC84821-B1F5-4BEC-B32F-A68BD9E65DD8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelReporting.Client", "ExcelReporting.Client\ExcelReporting.Client.csproj", "{DF9AF4BF-5798-4962-AEF4-25290873CBED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelReporting.Tests", "ExcelReporting.Tests\ExcelReporting.Tests.csproj", "{5C6E8C20-9707-465B-A1B3-9B17C2F8C295}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelReporting.Api", "ExcelReporting.Api\ExcelReporting.Api.csproj", "{27678364-3011-46CC-8878-73EE730E8378}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,10 +18,6 @@ Global
 		{F11C503F-53D9-4076-BDC3-4DA425E73426}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F11C503F-53D9-4076-BDC3-4DA425E73426}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F11C503F-53D9-4076-BDC3-4DA425E73426}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2EC84821-B1F5-4BEC-B32F-A68BD9E65DD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EC84821-B1F5-4BEC-B32F-A68BD9E65DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EC84821-B1F5-4BEC-B32F-A68BD9E65DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EC84821-B1F5-4BEC-B32F-A68BD9E65DD8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DF9AF4BF-5798-4962-AEF4-25290873CBED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DF9AF4BF-5798-4962-AEF4-25290873CBED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF9AF4BF-5798-4962-AEF4-25290873CBED}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -30,5 +26,9 @@ Global
 		{5C6E8C20-9707-465B-A1B3-9B17C2F8C295}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C6E8C20-9707-465B-A1B3-9B17C2F8C295}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C6E8C20-9707-465B-A1B3-9B17C2F8C295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27678364-3011-46CC-8878-73EE730E8378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27678364-3011-46CC-8878-73EE730E8378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27678364-3011-46CC-8878-73EE730E8378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27678364-3011-46CC-8878-73EE730E8378}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

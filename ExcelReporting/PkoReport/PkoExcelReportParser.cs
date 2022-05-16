@@ -7,7 +7,6 @@ public class PkoExcelReportParser
 {
     private readonly ExcelPackage package;
     private ExcelWorksheet ActualWorkSheet => package.Workbook.Worksheets.Last();
-    
 
     public PkoExcelReportParser(ExcelPackage package)
     {

@@ -52,6 +52,7 @@
         <Compile Include="HttpClient.cs" />
         <Compile Include="JsonCustomSerializer.cs" />
         <Compile Include="JsonSerialization.cs" />
+        <Compile Include="OperationResult.cs" />
         <Compile Include="PkoExcelReportClient.cs" />
         <Compile Include="PkoExcelReportParseRequest.cs" />
         <Compile Include="PkoExcelReportParseResponse.cs" />

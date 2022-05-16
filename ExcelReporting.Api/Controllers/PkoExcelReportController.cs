@@ -2,21 +2,23 @@ using ExcelReporting.Client;
 using ExcelReporting.Common;
 using ExcelReporting.PkoReport;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
-namespace ExcelReporting.API.Controllers;
+namespace ExcelReporting.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
 public class PkoExcelReportController : ControllerBase
 {
-    [HttpGet("getsmth")]
-    public async Task<IActionResult> Get()
+    private readonly ILogger<WeatherForecastController> logger;
+
+    public PkoExcelReportController(ILogger<WeatherForecastController> logger)
     {
-        return NotFound();
+        this.logger = logger;
     }
-    
+
     [HttpPost("parse")]
-    public IActionResult ParseReport([FromBody] PkoExcelReportParseRequest request)
+    public IActionResult Get([FromBody] PkoExcelReportParseRequest request)
     {
         var parser = new PkoExcelReportParser(ExcelReportPackageProvider.Get(request.ExcelContent));
         var response = new PkoExcelReportParseResponse
@@ -27,6 +29,7 @@ public class PkoExcelReportController : ControllerBase
             LastAcceptedByPerson = parser.ParseLastAcceptedByPerson(),
             AcceptedByPersons = parser.ParseAcceptedByPersons()
         };
+
         return Ok(response);
     }
 }
