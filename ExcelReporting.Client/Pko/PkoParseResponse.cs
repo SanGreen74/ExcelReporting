@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ExcelReporting.Client
+namespace ExcelReporting.Client.Pko
 {
     public class PkoExcelReportParseResponse
     {

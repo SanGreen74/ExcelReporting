@@ -59,6 +59,11 @@ public class PkoExcelReport : IPkoExcelReport
         package.Save();
     }
 
+    public byte[] GetResult()
+    {
+        return package.GetAsByteArray();
+    }
+    
     private void UpdateCellValue<T>(string cellAddress, T newValue)
     {
         var cell = ActualWorkSheet.Cells[cellAddress];

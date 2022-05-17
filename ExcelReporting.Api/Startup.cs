@@ -1,3 +1,4 @@
+using ExcelReporting.Api.Features.Pko.CalculateNext;
 using ExcelReporting.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,6 +22,7 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services
+            .AddSingleton<PkoNextWorksheetCalculator>()
             .AddControllers()
             .AddNewtonsoftJson(options =>
             {

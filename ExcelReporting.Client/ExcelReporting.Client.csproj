@@ -48,14 +48,18 @@
     <ItemGroup>
         <Compile Include="Date.cs" />
         <Compile Include="DateConverter.cs" />
-        <Compile Include="ExcelReportingClient.cs" />
+        <Compile Include="ExcelReportClient.cs" />
         <Compile Include="HttpClient.cs" />
         <Compile Include="JsonCustomSerializer.cs" />
         <Compile Include="JsonSerialization.cs" />
         <Compile Include="OperationResult.cs" />
-        <Compile Include="PkoExcelReportClient.cs" />
-        <Compile Include="PkoExcelReportParseRequest.cs" />
-        <Compile Include="PkoExcelReportParseResponse.cs" />
+        <Compile Include="Pko\Currency.cs" />
+        <Compile Include="Pko\IPkoClient.cs" />
+        <Compile Include="Pko\PkoCalculateNextRequest.cs" />
+        <Compile Include="Pko\PkoCalculateNextResponse.cs" />
+        <Compile Include="Pko\PkoClient.cs" />
+        <Compile Include="Pko\PkoParseRequest.cs" />
+        <Compile Include="Pko\PkoParseResponse.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>

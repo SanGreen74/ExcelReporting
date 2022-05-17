@@ -1,4 +1,4 @@
-﻿namespace ExcelReporting.Client
+﻿namespace ExcelReporting.Client.Pko
 {
     public class PkoExcelReportParseRequest
     {
