@@ -20,7 +20,7 @@ internal static class PkoReportFileHelper
 public class PkoExcelReportParserTest
 {
     private LocalApplication application;
-    private readonly ExcelReportClient client = new ExcelReportClient(Constants.LocalUrl);
+    private readonly ExcelReportClient client = new(Constants.LocalUrl);
 
     [OneTimeSetUp]
     public async Task SetUp()
@@ -51,6 +51,7 @@ public class PkoExcelReportParserTest
         result.LastZCauseNumber.Should().Be(230);
         result.AcceptedByPersons.Should().BeEquivalentTo(new[] {"Сатин Н.А.", "Брагина Е.А"},
             options => options.WithStrictOrdering());
+        result.ShopAddress.Should().Be("ул. Добролюбова, д.8, тел. (3439) 37-03-93");
     }
 
     [Test]

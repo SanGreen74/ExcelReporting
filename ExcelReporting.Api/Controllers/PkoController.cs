@@ -32,7 +32,8 @@ public class PkoController : ControllerBase
             LastComplicationDate = parser.ParseLastComplicationDate(),
             LastZCauseNumber = parser.ParseLastZCauseNumber(),
             LastAcceptedByPerson = parser.ParseLastAcceptedByPerson(),
-            AcceptedByPersons = parser.ParseAcceptedByPersons()
+            AcceptedByPersons = parser.ParseAcceptedByPersons(),
+            ShopAddress = parser.ParseShopAddress()
         };
 
         return Ok(response);

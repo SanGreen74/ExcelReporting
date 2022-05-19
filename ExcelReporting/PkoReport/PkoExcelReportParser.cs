@@ -66,6 +66,31 @@ public class PkoExcelReportParser
         return ParseAcceptedBy(ActualWorkSheet);
     }
 
+    public List<string> ParseAcceptedByPersons()
+    {
+        var worksheets = package.Workbook.Worksheets;
+        
+        return worksheets
+            .Select(ParseAcceptedBy)
+            .Distinct()
+            .ToList();
+    }
+
+    public string ParseShopAddress()
+    {
+        var shopAddressCell = ActualWorkSheet.Cells[PkoExcelReportAddresses.ShopAddress];
+        if (shopAddressCell == null)
+        {
+            throw new ArgumentNullException(nameof(shopAddressCell), "Shop address not found");
+        }
+
+        var cellValue = ParseCellValue(shopAddressCell, x => x);
+        var streetIndex = cellValue.IndexOf("ул.", StringComparison.InvariantCultureIgnoreCase);
+        return streetIndex < 0
+            ? string.Empty
+            : cellValue[streetIndex..];
+    }
+
     private static string ParseAcceptedBy(ExcelWorksheet worksheet)
     {
         var acceptedByPersonCell = worksheet.Cells[PkoExcelReportAddresses.AcceptedBy];
@@ -76,16 +101,6 @@ public class PkoExcelReportParser
 
         var acceptedBy = ParseCellValue(acceptedByPersonCell, x => x);
         return acceptedBy ?? throw new ArgumentNullException(nameof(acceptedBy), "Not found who accept report");
-    }
-
-    public List<string> ParseAcceptedByPersons()
-    {
-        var worksheets = package.Workbook.Worksheets;
-        
-        return worksheets
-            .Select(ParseAcceptedBy)
-            .Distinct()
-            .ToList();
     }
 
     private static T ParseCellValue<T>(ExcelRange range, Func<string, T> parse)

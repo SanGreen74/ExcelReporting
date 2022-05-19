@@ -8,4 +8,5 @@ public static class PkoExcelReportAddresses
     public const string DebitAmountString = "Q78:BZ83";
     public const string ZCauseNumber = "Q70:BY76";
     public const string AcceptedBy = "Q68:BY68";
+    public const string ShopAddress = "D31:CB36";
 }

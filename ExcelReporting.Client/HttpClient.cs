@@ -24,21 +24,23 @@ namespace ExcelReporting.Client
             try
             {
                 var webRequest = CreatePostRequest(path, body);
-                var webResponse = webRequest.GetResponse();
-                var responseStream = webResponse.GetResponseStream();
-                if (responseStream == null)
+                using (var webResponse = webRequest.GetResponse())
                 {
-                    throw new ArgumentNullException(nameof(responseStream), "Response doesn't contain stream");
-                }
-                using (var sr = new StreamReader(responseStream))
-                {
-                    var jsonValue = sr.ReadToEnd();
-                    var response = JsonCustomSerializer.Instance.Deserialize<TResponse>(jsonValue);
-                    return new OperationResult<TResponse>
+                    var responseStream = webResponse.GetResponseStream();
+                    if (responseStream == null)
                     {
-                        Result = response,
-                        StatusCode = 200
-                    };
+                        throw new ArgumentNullException(nameof(responseStream), "Response doesn't contain stream");
+                    }
+                    using (var sr = new StreamReader(responseStream))
+                    {
+                        var jsonValue = sr.ReadToEnd();
+                        var response = JsonCustomSerializer.Instance.Deserialize<TResponse>(jsonValue);
+                        return new OperationResult<TResponse>
+                        {
+                            Result = response,
+                            StatusCode = 200
+                        };
+                    }
                 }
             }
             catch (Exception e)
@@ -57,14 +59,15 @@ namespace ExcelReporting.Client
             where TBody : class
         {
             var webRequest = WebRequest.Create($"{basePath}/{path}");
-            webRequest.Headers[HttpRequestHeader.ContentType] = "application/json";
+            webRequest.ContentType = "application/json";
             webRequest.Method = "POST";
 
             var serializedBody = JsonCustomSerializer.Instance.Serialize(body);
-            var requestStream = webRequest.GetRequestStream();
             var bytes = Encoding.UTF8.GetBytes(serializedBody);
-            requestStream.Write(bytes, 0, bytes.Length);
+            webRequest.ContentLength = bytes.Length;
             
+            var requestStream = webRequest.GetRequestStream();
+            requestStream.Write(bytes, 0, bytes.Length);
             return webRequest;
         }
     }
