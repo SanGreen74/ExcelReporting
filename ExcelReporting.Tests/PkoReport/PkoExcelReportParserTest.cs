@@ -19,7 +19,7 @@ internal static class PkoReportFileHelper
 [TestFixture]
 public class PkoExcelReportParserTest
 {
-    private LocalApplication application;
+    private LocalApplication application = default!;
     private readonly ExcelReportClient client = new(Constants.LocalUrl);
 
     [OneTimeSetUp]

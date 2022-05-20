@@ -2,7 +2,6 @@
 
 using System.Runtime.CompilerServices;
 using ExcelReporting;
-using ExcelReporting.Client;
 using ExcelReporting.Common;
 using ExcelReporting.PkoReport;
 using OfficeOpenXml;

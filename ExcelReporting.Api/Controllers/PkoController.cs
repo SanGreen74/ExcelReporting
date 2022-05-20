@@ -1,5 +1,5 @@
 using ExcelReporting.Api.Features.Pko.CalculateNext;
-using ExcelReporting.Client.Pko;
+using ExcelReporting.Api.Features.Pko.Parse;
 using ExcelReporting.Common;
 using ExcelReporting.PkoReport;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace ExcelReporting.Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/excelReporting/[controller]")]
 public class PkoController : ControllerBase
 {
     private readonly ILogger<PkoController> logger;

@@ -1,4 +1,4 @@
-using ExcelReporting.Client;
+using ExcelReporting.Common;
 
 namespace ExcelReporting.PkoReport;
 

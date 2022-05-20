@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <PackageReference Include="EPPlus" Version="6.0.3" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
 
     <ItemGroup>
@@ -18,10 +19,6 @@
       <None Update="pko_copy.xlsx">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\ExcelReporting.Client\ExcelReporting.Client.csproj" />
     </ItemGroup>
 
 </Project>

@@ -37,6 +37,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ExcelReporting.Api\ExcelReporting.Api.csproj" />
+      <ProjectReference Include="..\ExcelReporting.Client\ExcelReporting.Client.csproj" />
     </ItemGroup>
 
 </Project>

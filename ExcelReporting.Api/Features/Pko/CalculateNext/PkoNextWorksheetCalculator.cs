@@ -1,8 +1,6 @@
-using ExcelReporting.Client.Pko;
 using ExcelReporting.Common;
 using ExcelReporting.PkoReport;
 using Microsoft.Extensions.Logging;
-using OfficeOpenXml;
 
 namespace ExcelReporting.Api.Features.Pko.CalculateNext;
 

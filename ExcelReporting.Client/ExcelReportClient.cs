@@ -8,7 +8,7 @@ namespace ExcelReporting.Client
 
         public ExcelReportClient(string baseUri)
         {
-            var httpClient = new HttpClient(baseUri);
+            var httpClient = new HttpClient($"{baseUri}/api/excelReporting");
             Pko = new PkoClient(httpClient);
         }
     }
