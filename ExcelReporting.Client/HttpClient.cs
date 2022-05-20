@@ -8,13 +8,14 @@ namespace ExcelReporting.Client
     internal class HttpClient
     {
         private readonly string basePath;
-
+        private const int DefaultTimeout = 30 * 1000;
+        
         public HttpClient(string basePath)
         {
             this.basePath = basePath;
         }
 
-        public OperationResult<TResponse> Post<TResponse>(string path, object body)
+        public OperationResult<TResponse> Post<TResponse>(string path, object body, int? timeout = null)
         {
             if (body == null)
             {
@@ -23,7 +24,7 @@ namespace ExcelReporting.Client
 
             try
             {
-                var webRequest = CreatePostRequest(path, body);
+                var webRequest = CreatePostRequest(path, body, timeout ?? DefaultTimeout);
                 using (var webResponse = webRequest.GetResponse())
                 {
                     var responseStream = webResponse.GetResponseStream();
@@ -55,7 +56,7 @@ namespace ExcelReporting.Client
             }
         }
 
-        private WebRequest CreatePostRequest<TBody>(string path, TBody body)
+        private WebRequest CreatePostRequest<TBody>(string path, TBody body, int timeout)
             where TBody : class
         {
             var webRequest = WebRequest.Create($"{basePath}/{path}");
@@ -65,6 +66,7 @@ namespace ExcelReporting.Client
             var serializedBody = JsonCustomSerializer.Instance.Serialize(body);
             var bytes = Encoding.UTF8.GetBytes(serializedBody);
             webRequest.ContentLength = bytes.Length;
+            webRequest.Timeout = timeout;
             
             var requestStream = webRequest.GetRequestStream();
             requestStream.Write(bytes, 0, bytes.Length);
