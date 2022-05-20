@@ -80,7 +80,8 @@ namespace ExcelReporting.Common
 
         public static bool TryParse(string value, out Date date)
         {
-            if (!DateTime.TryParse(value, out var dateTime))
+            if (!DateTime.TryParseExact(value, DefaultDateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None,
+                    out var dateTime))
             {
                 date = default;
                 return false;

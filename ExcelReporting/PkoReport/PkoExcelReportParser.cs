@@ -105,7 +105,12 @@ public class PkoExcelReportParser
 
     private static T ParseCellValue<T>(ExcelRange range, Func<string, T> parse)
     {
-        var value = range.GetCellValue<string>(0, 0);
+        var cellValue = range.GetCellValue<object>(0, 0);
+        string value;
+        if (cellValue is DateTime cellValueDateTime)
+            value = cellValueDateTime.ToString("dd.MM.yyyy");
+        else
+            value = range.GetCellValue<string>(0, 0);
         return parse(value);
     }
 }

@@ -31,7 +31,7 @@ public class PkoExcelReport : IPkoExcelReport
     public IPkoExcelReport UpdateDebit(int roubles, int kopecks)
     {
         //Сумма, руб.коп.
-        var debit = CurrencyToStringConverter.ParseToDouble(roubles, kopecks);
+        var debit = CurrencyToStringConverter.ParseToDecimal(roubles, kopecks);
         UpdateCellValue(PkoExcelReportAddresses.DebitAmount, debit);
         
         var currencyCyrillic = CurrencyToStringConverter.ConvertToInWords(roubles, kopecks);

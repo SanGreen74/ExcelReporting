@@ -1,8 +1,10 @@
+using System.Globalization;
+
 namespace ExcelReporting.Common;
 
 public static class CurrencyToStringConverter
 {
-    public static decimal ParseToDouble(int roubles, int kopecks) => decimal.Parse($"{roubles},{kopecks}");
+    public static decimal ParseToDecimal(int roubles, int kopecks) => decimal.Parse($"{roubles}.{kopecks}", CultureInfo.InvariantCulture);
 
     public static string ConvertToInWords(int roubles, int kopecks)
     {
