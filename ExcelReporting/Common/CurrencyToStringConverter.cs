@@ -2,7 +2,7 @@ namespace ExcelReporting.Common;
 
 public static class CurrencyToStringConverter
 {
-    public static double ParseToDouble(int roubles, int kopecks) => double.Parse($"{roubles},{kopecks}");
+    public static decimal ParseToDouble(int roubles, int kopecks) => decimal.Parse($"{roubles},{kopecks}");
 
     public static string ConvertToInWords(int roubles, int kopecks)
     {
