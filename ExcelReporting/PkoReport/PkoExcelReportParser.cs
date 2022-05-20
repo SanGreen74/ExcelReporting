@@ -22,7 +22,7 @@ public class PkoExcelReportParser
         }
         
 
-        return ParseCellValue(complicationDateCell, Date.ParseFromOADate);
+        return ParseCellValue(complicationDateCell, Date.ParseFromAnyFormat);
     }
 
     public int ParseLastDocumentNumber()

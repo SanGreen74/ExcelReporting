@@ -40,11 +40,27 @@ namespace ExcelReporting.Common
 
         public DayOfWeek DayOfWeek => ToDateTime().DayOfWeek;
 
-        public static Date ParseFromOADate(string value)
+        public static Date ParseFromAnyFormat(string value)
         {
-            var parsed = long.Parse(value);
-            var fromOaDate = DateTime.FromOADate(parsed);
-            return new Date(fromOaDate);
+            if (TryParse(value, out var date))
+                return date;
+
+            if (TryParseFromOADate(value, out date))
+                return date;
+
+            throw new ArgumentException($"Unexpected value: {value}", nameof(value));
+        }
+        
+        public static bool TryParseFromOADate(string value, out Date date)
+        {
+            date = default;
+            if (long.TryParse(value, out var parsedValue))
+            {
+                date = new Date(DateTime.FromOADate(parsedValue));
+                return true;
+            }
+
+            return false;
         }
         
         public static Date Parse(string value)
@@ -64,8 +80,7 @@ namespace ExcelReporting.Common
 
         public static bool TryParse(string value, out Date date)
         {
-            if (!DateTime.TryParseExact(value, DefaultDateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None,
-                    out var dateTime))
+            if (!DateTime.TryParse(value, out var dateTime))
             {
                 date = default;
                 return false;
