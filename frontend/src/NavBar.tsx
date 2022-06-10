@@ -4,10 +4,7 @@ export default function Navbar(): JSX.Element {
   return (
     <nav className="nav">
       <ul>
-        <CustomLink to="/">Home</CustomLink>
         <CustomLink to="/pko">ПКО</CustomLink>
-        <CustomLink to="/pricing">Pricing</CustomLink>
-        <CustomLink to="/about">About</CustomLink>
       </ul>
     </nav>
   );

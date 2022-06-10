@@ -9,7 +9,7 @@ function App(): JSX.Element {
             <Navbar />
             <div className="container">
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<PkoPage />} />
                     <Route path="/pricing" element={<Pricing />} />
                     <Route path="/Pko" element={<PkoPage />} />
                     <Route path="/about" element={<About />} />
