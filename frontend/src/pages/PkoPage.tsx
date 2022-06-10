@@ -252,11 +252,13 @@ export class PkoPage extends React.Component<PkoPageProps, PkoPageState> {
         for (var i = 0; i < byteString.length; i++) {
             ia[i] = byteString.charCodeAt(i);
         }*/
+        const date = this.state.complicationDate;
         const blob = response;
         const objUrl = URL.createObjectURL(blob);
         const anchor = document.createElement("a");
         anchor.href = objUrl;
-        anchor.download = "PKO.xlsx";
+        const dateStr = DateHelper.convertToString(date);
+        anchor.download = `ПКО_${dateStr}.xlsx`;
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);
