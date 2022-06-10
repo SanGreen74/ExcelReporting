@@ -7,7 +7,6 @@ namespace ExcelReporting.Client
         public static JsonSerializerSettings CreateSettings()
         {
             var settings = new JsonSerializerSettings();
-            settings.Converters.Add(new DateConverter());
             return settings;
         }
     }

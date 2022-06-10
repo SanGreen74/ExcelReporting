@@ -10,7 +10,6 @@ namespace ExcelReporting.Client
         
         private JsonCustomSerializer()
         {
-            settings.Converters.Add(new DateConverter());
         }
 
         public string Serialize<T>(T value) => JsonConvert.SerializeObject(value, settings);

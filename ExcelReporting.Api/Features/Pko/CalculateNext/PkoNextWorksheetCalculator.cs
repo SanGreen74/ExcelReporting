@@ -1,3 +1,4 @@
+using System;
 using ExcelReporting.Common;
 using ExcelReporting.PkoReport;
 using Microsoft.Extensions.Logging;
@@ -15,7 +16,7 @@ public class PkoNextWorksheetCalculator
 
     public PkoCalculateNextResponse CalculateNext(PkoCalculateNextRequest request)
     {
-        var excelContent = request.ExcelContent;
+        var excelContent = Convert.FromBase64String(request.ExcelContentBase64);
         var package = ExcelReportPackageProvider.Get(excelContent);
         var excelReport = PkoExcelReportStarter.StartNew(package);
 
@@ -27,9 +28,11 @@ public class PkoNextWorksheetCalculator
             .UpdateZCause(request.ZCauseNumber, request.ComplicationDate);
         excelReport.Save();
 
+        var inArray = excelReport.GetResult();
         return new PkoCalculateNextResponse
         {
-            ExcelContent = excelReport.GetResult()
+            ExcelContentBase64 = Convert.ToBase64String(inArray),
+            Content = inArray
         };
     }
 }

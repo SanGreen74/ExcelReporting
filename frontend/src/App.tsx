@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import Navbar from "./NavBar";
+import { PkoPage } from "./pages/PkoPage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(): JSX.Element {
+    return (
+        <>
+            <Navbar />
+            <div className="container">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/pricing" element={<Pricing />} />
+                    <Route path="/Pko" element={<PkoPage />} />
+                    <Route path="/about" element={<About />} />
+                </Routes>
+            </div>
+        </>
+    );
+}
+
+function Home() {
+    return <h1>Home</h1>;
+}
+
+function Pricing() {
+    return <h1>Pricing</h1>;
+}
+function About() {
+    return <h1>About</h1>;
 }
 
 export default App;

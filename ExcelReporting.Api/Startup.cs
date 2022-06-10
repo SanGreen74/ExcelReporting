@@ -1,3 +1,4 @@
+using ExcelReporting.Api.Cors;
 using ExcelReporting.Api.Features.Pko.CalculateNext;
 using ExcelReporting.Common;
 using Microsoft.AspNetCore.Builder;
@@ -23,11 +24,7 @@ public class Startup
     {
         services
             .AddSingleton<PkoNextWorksheetCalculator>()
-            .AddControllers()
-            .AddNewtonsoftJson(options =>
-            {
-                options.SerializerSettings.Converters.Add(new DateConverter());
-            });
+            .AddControllers();
             
         services.AddSwaggerGen(c =>
         {
@@ -46,7 +43,7 @@ public class Startup
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ExcelReporting.Api v1"));
         }
-
+        app.UseOptions();
         app.UseRouting();
         app.UseAuthorization();
         app.UseEndpoints(endpoints =>

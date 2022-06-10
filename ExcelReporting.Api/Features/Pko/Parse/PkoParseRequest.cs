@@ -2,6 +2,6 @@
 {
     public class PkoExcelReportParseRequest
     {
-        public byte[] ExcelContent { get; set; } = default!;
+        public string ExcelContentBase64 { get; set; } = default!;
     }
 }

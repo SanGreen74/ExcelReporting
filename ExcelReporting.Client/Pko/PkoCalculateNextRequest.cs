@@ -2,7 +2,7 @@ namespace ExcelReporting.Client.Pko
 {
     public class PkoCalculateNextRequest
     {
-        public byte[] ExcelContent { get; set; }
+        public string ExcelContentBase64 { get; set; }
         
         public Date ComplicationDate { get; set; }
         

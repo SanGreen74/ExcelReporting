@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using ExcelReporting.Api;
 using ExcelReporting.Client;
@@ -10,9 +11,10 @@ namespace ExcelReporting.Tests.PkoReport;
 
 internal static class PkoReportFileHelper
 {
-    public static byte[] ReadAllBytes(string path)
+    public static string ReadAsBase64String(string path)
     {
-        return File.ReadAllBytes($"PkoReport\\Data\\{path}");
+        var bytes = File.ReadAllBytes($"PkoReport\\Data\\{path}");
+        return Convert.ToBase64String(bytes);
     }
 }
 
@@ -37,10 +39,10 @@ public class PkoExcelReportParserTest
     [Test]
     public void ParseReport_ShouldReturnCorrectValue()
     {
-        var bytes = PkoReportFileHelper.ReadAllBytes("parse_test.xlsx");
+        var content = PkoReportFileHelper.ReadAsBase64String("parse_test.xlsx");
         var response = client.Pko.ParseReport(new PkoExcelReportParseRequest
         {
-            ExcelContent = bytes
+            ExcelContentBase64 = content
         });
 
         response.StatusCode.Should().Be(200);
@@ -57,7 +59,7 @@ public class PkoExcelReportParserTest
     [Test]
     public void CalculateNext_ShouldUpdateValue()
     {
-        var content = PkoReportFileHelper.ReadAllBytes("calculate_next_test.xlsx");
+        var content = PkoReportFileHelper.ReadAsBase64String("calculate_next_test.xlsx");
         var request = new PkoCalculateNextRequest
         {
             Debit = new Currency
@@ -67,16 +69,17 @@ public class PkoExcelReportParserTest
             },
             ComplicationDate = Date.Parse("12.08.1998"),
             DocumentNumber = 1337,
-            ExcelContent = content,
+            ExcelContentBase64 = content,
             AcceptedByPerson = "Путин В.В.",
             ZCauseNumber = 9911
         };
         var operationResult = client.Pko.CalculateNext(request);
         operationResult.StatusCode.Should().Be(200);
-        File.WriteAllBytes("result.xlsx", operationResult.Result.ExcelContent);
+        var fromBase64String = Convert.FromBase64String(operationResult.Result.ExcelContentBase64);
+        File.WriteAllBytes("result.xlsx", fromBase64String);
         var parseReportResponse = client.Pko.ParseReport(new PkoExcelReportParseRequest
         {
-            ExcelContent = operationResult.Result.ExcelContent
+            ExcelContentBase64 = operationResult.Result.ExcelContentBase64
         });
 
         parseReportResponse.StatusCode.Should().Be(200);
