@@ -1,8 +1,10 @@
+using ExcelReporting.Common;
+
 namespace ExcelReporting.Api.Features.Pko.CalculateNext
 {
     public class PkoCalculateNextResponse
     {
-        public string ExcelContentBase64 { get; set; } = default!;
+        public Date Date { get; set; }
         
         public byte[] Content { get; set; }
     }

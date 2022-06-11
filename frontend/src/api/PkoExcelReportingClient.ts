@@ -28,10 +28,9 @@ export class PkoExcelReportingClient implements IPkoExcelReportingClient {
                 "Content-Type": "application/json",
             },
         });
-        const blob = await response.blob();
-        return blob;
+
+        return await response.blob();
     };
-    
 
     private async post<TRequest, TResponse>(url: string, body: TRequest): Promise<Result<TResponse>> {
         const response = await fetch(`${this.baseUrl}/${url}`, {

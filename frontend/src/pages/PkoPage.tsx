@@ -54,6 +54,10 @@ export class PkoPage extends React.Component<PkoPageProps, PkoPageState> {
                 zCauseNumber: response.value?.lastZCauseNumber,
                 lastAcceptedByPerson: response.value?.lastAcceptedByPerson,
                 acceptedByPersons: response.value?.acceptedByPersons ?? [],
+                debitAmount: {
+                    roubles: 0,
+                    kopecks: 0
+                }
             }));
             Toast.push("Новые данные для следующего листка расчитаны.");
         } else {
@@ -195,6 +199,10 @@ export class PkoPage extends React.Component<PkoPageProps, PkoPageState> {
                                     lastAcceptedByPerson: value.value,
                                 }))
                             }
+                            onInputValueChange={(value) => this.setState(prevState => ({
+                                ...prevState,
+                                lastAcceptedByPerson: value
+                            }))}
                             value={{ value: this.state?.lastAcceptedByPerson, label: this.state?.lastAcceptedByPerson }}
                         ></ComboBox>
                     </Col>
@@ -234,7 +242,6 @@ export class PkoPage extends React.Component<PkoPageProps, PkoPageState> {
         this.setState(state);
         const response = await BackendClient.calculateNext({
             debit: this.state.debitAmount as Currency,
-
             excelContentBase64: this.state.fileBase64Content as string,
             complicationDate: this.state.complicationDate as Date,
             documentNumber: this.state.documentNumber as number,
@@ -245,13 +252,6 @@ export class PkoPage extends React.Component<PkoPageProps, PkoPageState> {
         state.isNextLoaded = false;
         this.setState(state);
 
-        /*const byteString = response.value;
-        const ab = new ArrayBuffer(byteString.length);
-        const ia = new Uint8Array(ab);
-
-        for (var i = 0; i < byteString.length; i++) {
-            ia[i] = byteString.charCodeAt(i);
-        }*/
         const date = this.state.complicationDate;
         const blob = response;
         const objUrl = URL.createObjectURL(blob);
@@ -264,6 +264,25 @@ export class PkoPage extends React.Component<PkoPageProps, PkoPageState> {
         document.body.removeChild(anchor);
 
         URL.revokeObjectURL(objUrl);
+    }
+
+    private renderCalculateNextButton(): JSX.Element {
+        return (
+            <>
+                <Row>
+                    <Col md={this.leftPaddingMd}></Col>
+                    <Col md={this.firstColumnMd}>
+                        <Button
+                            disabled={!this.state.fileUploaded}
+                            loading={this.state.isNextLoaded}
+                            onClick={async () => await this.calculateNext()}
+                        >
+                            Сформировать новую страницу
+                        </Button>
+                    </Col>
+                </Row>
+            </>
+        );
     }
 
     render(): JSX.Element {
@@ -281,18 +300,7 @@ export class PkoPage extends React.Component<PkoPageProps, PkoPageState> {
                         {this.renderAcceptedByPerson()}
                         {this.renderDebitAmount()}
                         <MenuSeparator />
-                        <Row>
-                            <Col md={this.leftPaddingMd}></Col>
-                            <Col md={this.firstColumnMd}>
-                                <Button
-                                    disabled={!this.state.fileUploaded}
-                                    loading={this.state.isNextLoaded}
-                                    onClick={async () => await this.calculateNext()}
-                                >
-                                    Сформировать новую страницу
-                                </Button>
-                            </Col>
-                        </Row>
+                        {this.renderCalculateNextButton()}
                     </Gapped>
                 </Container>
             </>

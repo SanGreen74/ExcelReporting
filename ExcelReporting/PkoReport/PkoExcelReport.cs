@@ -55,6 +55,9 @@ public class PkoExcelReport : IPkoExcelReport
 
     public void Save()
     {
+        var length = package.Workbook.Worksheets.Count;
+        package.Workbook.Worksheets[length - 2].View.SetTabSelected(false);
+        ActualWorkSheet.View.SetTabSelected();
         package.Save();
     }
 

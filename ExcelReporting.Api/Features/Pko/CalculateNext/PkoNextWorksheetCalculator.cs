@@ -28,11 +28,10 @@ public class PkoNextWorksheetCalculator
             .UpdateZCause(request.ZCauseNumber, request.ComplicationDate);
         excelReport.Save();
 
-        var inArray = excelReport.GetResult();
         return new PkoCalculateNextResponse
         {
-            ExcelContentBase64 = Convert.ToBase64String(inArray),
-            Content = inArray
+            Date = request.ComplicationDate,
+            Content = excelReport.GetResult()
         };
     }
 }

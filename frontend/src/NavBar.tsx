@@ -4,7 +4,7 @@ export default function Navbar(): JSX.Element {
   return (
     <nav className="nav">
       <ul>
-        <CustomLink to="/pko">ПКО</CustomLink>
+        <CustomLink to="/pko">Формирование ПКО</CustomLink>
       </ul>
     </nav>
   );

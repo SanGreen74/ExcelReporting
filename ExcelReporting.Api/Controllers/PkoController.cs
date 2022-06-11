@@ -64,11 +64,9 @@ public class PkoController : ControllerBase
     public IActionResult CalculateNext([FromBody] PkoCalculateNextRequest request)
     {
         var response = nextWorksheetCalculator.CalculateNext(request);
-        var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-        
-        return new FileContentResult(response.Content, contentType)
+        return new FileContentResult(response.Content, MimeTypes.Xlsx)
         {
-            FileDownloadName = ".xlsx"
+            FileDownloadName = $"ПКО_{response.Date}.xlsx"
         };
     }    
 }
