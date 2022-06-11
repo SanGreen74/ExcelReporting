@@ -8,7 +8,7 @@ namespace ExcelReporting.Api.Features.Pko.Parse
         /// <summary>
         /// Дата составления
         /// </summary>
-        public Date LastComplicationDate { get; set; } 
+        public Date LastComplicationDate { get; set; } = default!;
         
         /// <summary>
         /// Номер документа в формате КП-00001
